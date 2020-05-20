@@ -17,6 +17,7 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.IContainerProvider;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
@@ -46,7 +47,21 @@ public class CoverConveyor extends Cover {
 
     @Override
     public String getId() {
-        return ID;
+        return "conveyor" + ":"+tier.getId();
+    }
+
+    @Override
+    public CompoundNBT serialize() {
+        CompoundNBT nbt = super.serialize();
+        nbt.putString("TEST","value");
+        return nbt;
+    }
+
+    @Override
+    public void deserialize(CompoundNBT compound) {
+        super.deserialize(compound);
+        String test = compound.getString("TEST");
+        assert(test == "value");
     }
 
     @Override
