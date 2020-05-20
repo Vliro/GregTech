@@ -47,7 +47,7 @@ public class CoverConveyor extends Cover {
 
     @Override
     public String getId() {
-        return "conveyor" + ":"+tier.getId();
+        return "conveyor";
     }
 
     @Override
@@ -61,7 +61,7 @@ public class CoverConveyor extends Cover {
     public void deserialize(CompoundNBT compound) {
         super.deserialize(compound);
         String test = compound.getString("TEST");
-        assert(test == "value");
+        assert(test.equals("value"));
     }
 
     @Override
@@ -105,7 +105,7 @@ public class CoverConveyor extends Cover {
     @Nullable
     @Override
     public Container createMenu(int windowId, @Nonnull PlayerInventory inv, @Nonnull PlayerEntity player) {
-        this.gui = new GuiData<Cover>(this.getDomain(),ID, muramasa.antimatter.Data.COVER_MENU_HANDLER);
+        this.gui = new GuiData<>(this.getDomain(),ID, muramasa.antimatter.Data.COVER_MENU_HANDLER);
         return gui.getMenuHandler().getMenu(this, inv, windowId);
     }
 
@@ -119,13 +119,11 @@ public class CoverConveyor extends Cover {
         if (tile.getWorld() == null || tile.getWorld().getGameTime() % (speeds[tier.getIntegerId()]) != 0) return;
         TileEntity adjTile = tile.getWorld().getTileEntity(tile.getPos().offset(side));
         if (adjTile == null) return;
-        //if (!tile.has(MachineFlag.ITEM))  return;
         adjTile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, side.getOpposite()).ifPresent(x -> {
-         //   Utils.transferItemsIfExists(tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).););
+            //Utils.transferItems(tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, side.getOpposite()), adjTile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, side.getOpposite()));
         });
-       // Utils.transferItems(tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, side.getOpposite()), adjTile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, side.getOpposite()));
     }
-
+    //TODO: translate
     @Override
     public ITextComponent getDisplayName() {
         return new StringTextComponent("Conveyor");
