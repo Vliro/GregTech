@@ -1,7 +1,9 @@
 package muramasa.gti.data;
 
+import muramasa.antimatter.machine.Tier;
 import muramasa.antimatter.machine.types.*;
 import muramasa.antimatter.tile.single.TileBatteryBuffer;
+import muramasa.antimatter.tile.single.TileInfiniteStorage;
 import muramasa.gti.tile.TileEntitySteamMachine;
 import muramasa.gti.Ref;
 //import muramasa.gti.block.BlockBatteryBufferCreative;
@@ -23,7 +25,7 @@ public class Machines {
     public static BasicMachine EXTRACTOR = new BasicMachine(Ref.ID, "extractor", EXTRACTING, ITEM);
     public static BasicMachine EXTRUDER = new BasicMachine(Ref.ID, "extruder", EXTRUDING, ITEM);
     public static BasicMachine LATHE = new BasicMachine(Ref.ID, "lathe", LATHING, ITEM);
-    public static BasicMachine PULVERIZER = new BasicMachine(Ref.ID, "pulverizer", PULVERIZING, ITEM);
+    public static BasicMachine PULVERIZER = new BasicMachine(Ref.ID, "pulverizer", PULVERIZING, ITEM, GUI);
     public static BasicMachine RECYCLER = new BasicMachine(Ref.ID, "recycler", RECYCLING, ITEM);
     public static BasicMachine SCANNER = new BasicMachine(Ref.ID, "scanner", SCANNING, ITEM, FLUID);
     public static BasicMachine WIRE_MILL = new BasicMachine(Ref.ID, "wire_mill", WIRE_MILLING, ITEM);
@@ -44,7 +46,7 @@ public class Machines {
     public static BasicMachine CHEMICAL_BATH = new BasicMachine(Ref.ID, "chemical_bath", CHEMICAL_BATHING, ITEM, FLUID);
     public static BasicMachine AUTOCLAVE = new BasicMachine(Ref.ID, "autoclave", AUTOCLAVING, ITEM, FLUID);
     public static BasicMachine MIXER = new BasicMachine(Ref.ID, "mixer", MIXING, ITEM, FLUID);
-    public static BasicMachine LASER_ENGRAVER = new BasicMachine(Ref.ID, "laser_engraver", LASER_ENGRAVING, ITEM);
+    public static BasicMachine LASER_ENGRAVER = new BasicMachine(Ref.ID, "laser_engraver", LASER_ENGRAVING, ITEM, GUI);
     public static BasicMachine FORMING_PRESS = new BasicMachine(Ref.ID, "forming_press", PRESSING, ITEM);
     public static BasicMachine FORGE_HAMMER = new BasicMachine(Ref.ID, "forge_hammer", HAMMERING, ITEM);
     public static BasicMachine SIFTER = new BasicMachine(Ref.ID, "sifter", SIFTING, ITEM);
@@ -89,13 +91,13 @@ public class Machines {
 
     public static TankMachine QUANTUM_TANK = new TankMachine(Ref.ID, "quantum_tank");
 
-    public static BasicMachine STEAM_GENERATOR = new BasicMachine(Ref.ID, "steam_generator", STEAM_FUELS, LV, MV, HV, ITEM, FLUID, GENERATOR);
+    public static BasicMachine STEAM_GENERATOR = new BasicMachine(Ref.ID, "steam_generator", STEAM_FUELS, LV, MV, HV, ITEM, FLUID, GENERATOR, GUI);
     public static BasicMachine GAS_GENERATOR = new BasicMachine(Ref.ID, "gas_generator", GAS_FUELS, LV, MV, HV, ITEM, FLUID);
     public static BasicMachine COMBUSTION_GENERATOR = new BasicMachine(Ref.ID, "combustion_generator", COMBUSTION_FUELS, LV, MV, HV, ITEM, FLUID);
     public static BasicMachine NAQUADAH_GENERATOR = new BasicMachine(Ref.ID, "naquadah_generator", NAQUADAH_FUELS, EV, IV, LUV, ITEM, FLUID);
     public static BasicMachine PLASMA_GENERATOR = new BasicMachine(Ref.ID, "plasma_generator", PLASMA_FUELS, IV, LUV, ZPM, ITEM, FLUID, GENERATOR);
 
-//    public static BlockBatteryBufferCreative CREATIVE_ENERGY_BUFFER = new BlockBatteryBufferCreative(Ref.ID, "creative_energy_buffer", ENERGY);
+    public static BasicMachine CREATIVE_ENERGY_BUFFER = new BasicMachine(Ref.ID, "creative_energy_buffer", ENERGY, GUI).setTile(m -> () -> new TileInfiniteStorage(m,1)).setTiers(Tier.getAllElectric());
     public static BasicMachine BATTERY_BUFFER_FOUR = new BasicMachine(Ref.ID, "battery_buffer_four", ENERGY,ITEM,GUI).setTile(m -> () -> new TileBatteryBuffer(m));
     public static BasicMachine BATTERY_BUFFER_ONE = new BasicMachine(Ref.ID, "battery_buffer_one", ENERGY,ITEM,GUI).setTile(m -> () -> new TileBatteryBuffer(m));
     public static BasicMachine BATTERY_BUFFER_NINE = new BasicMachine(Ref.ID, "battery_buffer_nine", ENERGY,ITEM,GUI).setTile(m -> () -> new TileBatteryBuffer(m));
