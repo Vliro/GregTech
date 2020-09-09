@@ -28,6 +28,11 @@ public class CoverConveyor extends CoverTiered {
     }*/
 
     @Override
+    protected String getRenderId() {
+        return ID();
+    }
+
+    @Override
     protected String ID() {
         return ID;
     }
